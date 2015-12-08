@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+<h1>Show Country</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong>Name:</strong>
+      <%= @country.name %>
+    </p>
+  </div>
+  <div class="panel-footer">
+    <%= link_to 'Edit', edit_country_path(@country), class: 'btn btn-default' %>
+    <%= link_to 'Back', countries_path, class: 'btn btn-default' %>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<%= nested_form_for(@release) do |f| %>
+  <% if @release.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@release.errors.count, "error") %> prohibited this release from being saved:</h2>
+      <ul>
+        <% @release.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Release
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :team %>
+            <%= f.collection_select(:team_id, @teams, :id, :name, {}, {class:'form-control'} ) %>
+          </div>
+          <div class="form-group">
+            <%= f.label :released_at %>
+            <p>
+              <%= f.datetime_select :released_at %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Release Countries
+        </div>
+        <div class="panel-body">
+          <% @countries.each_with_index do |country, index| %>
+            <% countries_releases = @release.countries_releases.where(country_id: country) %>
+            <% countries_releases_id = countries_releases.exists? ? countries_releases.first.id : nil %>
+            <% countries_releases_version = countries_releases.exists? ? countries_releases.first.version : nil %>
+            <% countries_releases_is_enabled = countries_releases.exists? ? countries_releases.first.is_enabled : nil %>
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <%= hidden_field_tag "release[countries_releases_attributes][#{index}][is_enabled]", 0 %>
+                  <%= check_box_tag "release[countries_releases_attributes][#{index}][is_enabled]", 1, ('checked' if countries_releases_is_enabled) %>
+                </span>
+                <%= text_field_tag "release[countries_releases_attributes][#{index}][version]", countries_releases_version, placeholder: 'Version', class: 'form-control' %>
+                <%= hidden_field_tag "release[countries_releases_attributes][#{index}][id]", countries_releases_id %>
+                <%= hidden_field_tag "release[countries_releases_attributes][#{index}][country_id]", country.id %>
+                <%= hidden_field_tag "release[countries_releases_attributes][#{index}][_destroy]", 0 %>
+                <span class="input-group-addon">
+                  <%= country.name %>
+                </span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="panel-footer">
+          <%= f.submit class: 'btn btn-default' %>
+          <%= link_to 'Back', releases_path, class: 'btn btn-default' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Release Steps
+        </div>
+        <div class="panel-body">
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

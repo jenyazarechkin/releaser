@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+<h1>Show Step</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong>Name:</strong>
+      <%= @step.name %>
+    </p>
+  </div>
+  <div class="panel-footer">
+    <%= link_to 'Edit', edit_step_path(@step), class: 'btn btn-default' %>
+    <%= link_to 'Back', steps_path, class: 'btn btn-default' %>
+  </div>
+</div>

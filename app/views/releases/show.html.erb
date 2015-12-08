@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<h1>Show Release</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong>Name:</strong>
+      <%= @release.name %>
+    </p>
+    <p>
+      <strong>Team:</strong>
+      <%= @release.team.name %>
+    </p>
+    <p>
+      <strong>Release at:</strong>
+      <%= I18n.l @release.released_at, format: :short %>
+    </p>
+  </div>
+  <div class="panel-footer">
+    <%= link_to 'Edit', edit_release_path(@release), class: 'btn btn-default' %>
+    <%= link_to 'Back', releases_path, class: 'btn btn-default' %>
+  </div>
+</div>
