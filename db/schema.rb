@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208200548) do
+ActiveRecord::Schema.define(version: 20151208201501) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -57,13 +57,13 @@ ActiveRecord::Schema.define(version: 20151208200548) do
     t.integer  "status",     limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.integer  "country_id", limit: 4
+    t.integer  "step_id",    limit: 4
     t.integer  "release_id", limit: 4
     t.boolean  "is_enabled"
   end
 
-  add_index "steps_releases", ["country_id"], name: "index_steps_releases_on_country_id", using: :btree
   add_index "steps_releases", ["release_id"], name: "index_steps_releases_on_release_id", using: :btree
+  add_index "steps_releases", ["step_id"], name: "index_steps_releases_on_step_id", using: :btree
 
   create_table "team_members", force: :cascade do |t|
     t.string   "name",       limit: 255

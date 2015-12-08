@@ -1,6 +1,6 @@
 class ReleasesController < ApplicationController
   before_action :set_release, only: [:show, :edit, :update, :destroy]
-  before_action :set_teams, :set_countries, only: [:new, :edit, :create, :update]
+  before_action :set_teams, :set_countries, :set_steps, only: [:new, :edit, :create, :update]
 
   # GET /releases
   # GET /releases.json
@@ -75,6 +75,10 @@ class ReleasesController < ApplicationController
 
     def set_countries
       @countries = Country.order(:name).all
+    end
+
+    def set_steps
+      @steps = Step.order(:name).all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

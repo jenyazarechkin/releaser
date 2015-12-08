@@ -71,6 +71,23 @@
           Release Steps
         </div>
         <div class="panel-body">
+          <% @steps.each_with_index do |step, index| %>
+            <% steps_releases = @release.steps_releases.where(step_id: step) %>
+            <% steps_releases_id = steps_releases.exists? ? steps_releases.first.id : nil %>
+            <% steps_releases_is_enabled = steps_releases.exists? ? steps_releases.first.is_enabled : nil %>
+            <div class="form-group">
+              <div class="checkbox">
+                <%= hidden_field_tag "release[steps_releases_attributes][#{index}][is_enabled]", 0 %>
+                <label>
+                  <%= check_box_tag "release[steps_releases_attributes][#{index}][is_enabled]", 1, ('checked' if steps_releases_is_enabled) %>
+                  <%= step.name %>
+                </label>
+                <%= hidden_field_tag "release[steps_releases_attributes][#{index}][id]", steps_releases_id %>
+                <%= hidden_field_tag "release[steps_releases_attributes][#{index}][step_id]", step.id %>
+                <%= hidden_field_tag "release[steps_releases_attributes][#{index}][_destroy]", 0 %>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
