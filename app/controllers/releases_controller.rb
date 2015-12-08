@@ -26,6 +26,7 @@ class ReleasesController < ApplicationController
   # POST /releases.json
   def create
     @release = Release.new(release_params)
+    # @release.steps_releases =
 
     respond_to do |format|
       if @release.save
@@ -78,6 +79,23 @@ class ReleasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def release_params
-      params.require(:release).permit(:name, :released_at, :team_id, countries_releases_attributes: [:id, :country_id, :release_id ,:version, :is_enabled])
+      params.require(:release).permit(
+        :name,
+        :released_at,
+        :team_id,
+        countries_releases_attributes: [
+          :id,
+          :country_id,
+          :release_id,
+          :version,
+          :is_enabled
+        ],
+        steps_releases_attributes: [
+          :id,
+          :step_id,
+          :release_id,
+          :status
+        ]
+      )
     end
 end
