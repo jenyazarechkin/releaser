@@ -98,6 +98,7 @@ class ReleasesController < ApplicationController
           :id,
           :step_id,
           :release_id,
+          :is_enabled,
           :status
         ]
       )
