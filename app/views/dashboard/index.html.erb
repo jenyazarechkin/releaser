@@ -1,0 +1,14 @@
+
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills nav-justified" role="tablist">
+    <% @teams.each do |team| %>
+
+    <li role="presentation">
+      <%= link_to team.name , "#team_#{team.id}", role: 'tab', 'data-toggle': 'tab' %>
+    </li>
+    <% end %>
+  </ul>
+
+</div>
