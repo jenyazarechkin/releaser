@@ -3,7 +3,7 @@
   <table class="table">
     <tr>
       <td></td>
-      <%= content_tag 'td', colspan: @release_countries.count, width: '40%' do %>
+      <%= content_tag 'td', colspan: @countries_releases.count, width: '40%' do %>
         <p>
           <%= link_to @release.name, edit_release_path(@release)  %>
           <br/>
@@ -21,22 +21,23 @@
     </tr>
     <tr>
       <td></td>
-      <% @release_countries.each do |release_country|  %>
+      <% @countries_releases.each do |countries_release|  %>
         <th>
-          <%= release_country.country.name %>
+          <%= countries_release.country.name %>
         </th>
       <% end  %>
     </tr>
-    <% @release_steps.each do |release_step| %>
+    <% @steps_releases.each do |steps_release| %>
       <tr>
         <td>
-          <%= link_to release_step.step.name, edit_step_path(release_step.step) %>
+          <%= link_to steps_release.step.name, edit_step_path(steps_release.step) %>
         </td>
-        <% @release_countries.each do |release_country|  %>
+        <% @countries_releases.each do |countries_release|  %>
+        <% statuses_steps_release = steps_release.status_for_country(countries_release.country) %>
           <td>
             <div class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Status
+                <%= statuses_steps_release.status.humanize %>
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">

@@ -12,8 +12,8 @@ class ReleasesController < ApplicationController
   # GET /releases/1.json
   def show
     # need some refactor
-    @release_steps = @release.steps_releases.where(is_enabled: true).preload(:step).all
-    @release_countries = @release.countries_releases.where(is_enabled: true).preload(:country).all
+    @steps_releases = @release.steps_releases.where(is_enabled: true).preload(:step).all
+    @countries_releases = @release.countries_releases.where(is_enabled: true).preload(:country).all
   end
 
   # GET /releases/new
