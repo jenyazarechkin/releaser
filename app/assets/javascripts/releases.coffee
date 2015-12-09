@@ -4,7 +4,7 @@
 
 $('.dropdown-toggle').dropdown()
 
-$ ->
+ready = ->
   $('.status-link').on 'click', (event) ->
     event.preventDefault()
     $('*').css 'cursor', 'progress'
@@ -21,5 +21,6 @@ $ ->
         else
           alert('Status not changed')
         $('*').css 'cursor', ''
-    return
-  return
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
