@@ -34,7 +34,15 @@
         </td>
         <% @release_countries.each do |release_country|  %>
           <td>
-            status
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Status
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+              </ul>
+            </div>
           </td>
         <% end  %>
       </tr>
