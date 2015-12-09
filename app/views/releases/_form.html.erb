@@ -37,7 +37,7 @@
           Release Countries
         </div>
         <div class="panel-body">
-          <!-- Code for refactoring, move query to controller -->
+          <!-- Code for refactoring, move query to controller, simplify params for new record -->
           <% @countries.each_with_index do |country, index| %>
             <% countries_releases = @release.countries_releases.where(country_id: country) %>
             <% countries_release_id = countries_releases.exists? ? countries_releases.first.id : nil %>

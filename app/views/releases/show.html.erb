@@ -24,6 +24,7 @@
       <% @countries_releases.each do |countries_release|  %>
         <th>
           <%= countries_release.country.name %>
+          (<%= countries_release.version %>)
         </th>
       <% end  %>
     </tr>
