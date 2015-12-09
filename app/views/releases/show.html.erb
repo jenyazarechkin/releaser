@@ -1,20 +1,45 @@
 <p id="notice"><%= notice %></p>
-<h1>Show Release</h1>
 <div class="panel panel-default">
-  <div class="panel-body">
-    <p>
-      <strong>Name:</strong>
-      <%= @release.name %>
-    </p>
-    <p>
-      <strong>Team:</strong>
-      <%= @release.team.name %>
-    </p>
-    <p>
-      <strong>Release at:</strong>
-      <%= I18n.l @release.released_at, format: :short %>
-    </p>
-  </div>
+  <table class="table">
+    <tr>
+      <td></td>
+      <%= content_tag 'td', colspan: @release_countries.count, width: '40%' do %>
+        <p>
+          <%= link_to @release.name, edit_release_path(@release)  %>
+          <br/>
+          <strong>
+            Release date:
+          </strong>
+          <%= I18n.l @release.released_at, format: :short %>
+          <br/>
+          <strong>
+            Release team:
+          </strong>
+          <%= "#{@release.team.name} (#{@release.team.members_names})" %>
+        </p>
+      <% end %>
+    </tr>
+    <tr>
+      <td></td>
+      <% @release_countries.each do |release_country|  %>
+        <th>
+          <%= release_country.country.name %>
+        </th>
+      <% end  %>
+    </tr>
+    <% @release_steps.each do |release_step| %>
+      <tr>
+        <td>
+          <%= link_to release_step.step.name, edit_step_path(release_step.step) %>
+        </td>
+        <% @release_countries.each do |release_country|  %>
+          <td>
+            status
+          </td>
+        <% end  %>
+      </tr>
+    <% end %>
+  </table>
   <div class="panel-footer">
     <%= link_to 'Edit', edit_release_path(@release), class: 'btn btn-default' %>
     <%= link_to 'Back', releases_path, class: 'btn btn-default' %>

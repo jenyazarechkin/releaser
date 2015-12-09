@@ -1,6 +1,6 @@
 class ReleasesController < ApplicationController
   before_action :set_release, only: [:show, :edit, :update, :destroy]
-  before_action :set_teams, :set_countries, :set_steps, only: [:new, :edit, :create, :update]
+  before_action :set_teams, :set_countries, :set_steps, except: [:index, :destroy, :show]
 
   # GET /releases
   # GET /releases.json
@@ -11,6 +11,9 @@ class ReleasesController < ApplicationController
   # GET /releases/1
   # GET /releases/1.json
   def show
+    # need some refactor
+    @release_steps = @release.steps_releases.where(is_enabled: true).preload(:step).all
+    @release_countries = @release.countries_releases.where(is_enabled: true).preload(:country).all
   end
 
   # GET /releases/new

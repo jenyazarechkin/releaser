@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208201501) do
+ActiveRecord::Schema.define(version: 20151209080843) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20151208201501) do
   add_index "steps", ["deleted_at"], name: "index_steps_on_deleted_at", using: :btree
 
   create_table "steps_releases", force: :cascade do |t|
-    t.integer  "status",     limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "step_id",    limit: 4
