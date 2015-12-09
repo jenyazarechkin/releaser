@@ -8,7 +8,8 @@ class StatusesStepsReleasesController < ApplicationController
         format.json {
           render json: {
             status: :ok,
-            location: release_path(@statuses_step_release.steps_release.release)
+            location: release_path(@statuses_step_release.steps_release.release),
+            status_name: @statuses_step_release.status.humanize
             }
         }
       else
@@ -23,7 +24,7 @@ class StatusesStepsReleasesController < ApplicationController
 
   private
 
-    def set_statuses_step_release
+    def set_statuses_steps_release
       @statuses_step_release = StatusesStepsRelease.find(params[:id])
     end
 

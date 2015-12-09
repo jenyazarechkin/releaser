@@ -38,13 +38,13 @@
           <td>
             <div class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <%= statuses_steps_release.status.humanize %>
+                <span class="status-name"><%= statuses_steps_release.status.humanize %></span>
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
               <% StatusesStepsRelease.statuses.each do |status| %>
                 <li>
-                  <%= link_to status[0].humanize %>
+                  <%= link_to status[0].humanize, statuses_steps_release_path(statuses_steps_release), data: { 'no-turbolink': true, 'status': status[0] }, class: 'status-link' %>
                 </li>
               <% end %>
               </ul>

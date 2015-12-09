@@ -6,7 +6,6 @@ class StepsRelease < ActiveRecord::Base
 
   after_create :create_statuses_steps_releases
 
-
   def status_for_country(country)
     statuses_steps_releases.where(country: country).first
   end

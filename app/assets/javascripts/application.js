@@ -16,3 +16,5 @@
 //= require jquery_nested_form
 //= require bootstrap/dropdown
 //= require_tree .
+//= require_self
+
