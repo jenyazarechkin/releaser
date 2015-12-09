@@ -1,13 +1,19 @@
 <div>
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-pills nav-justified" role="tablist">
+  <ul class="nav nav-tabs nav-justified">
     <% @teams.each do |team| %>
-
-    <li role="presentation">
-      <%= link_to team.name , "#team_#{team.id}", role: 'tab', 'data-toggle': 'tab' %>
-    </li>
+      <%= content_tag 'li', class: ('active' if team == @team) do %>
+        <%= link_to team.name , root_path(team: team.id) %>
+      <% end %>
     <% end %>
   </ul>
+  <% if(@team.releases.present?) %>
+    <%= render file: 'releases/show' %>
+  <% else %>
+    <p>
 
+    <pre>
+      No releases for this team
+    </pre>
+    </p>
+  <% end %>
 </div>
