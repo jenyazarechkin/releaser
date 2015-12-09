@@ -41,7 +41,11 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
+              <% StatusesStepsRelease.statuses.each do |status| %>
+                <li>
+                  <%= link_to status[0].humanize %>
+                </li>
+              <% end %>
               </ul>
             </div>
           </td>

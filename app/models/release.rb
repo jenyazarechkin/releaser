@@ -10,7 +10,7 @@ class Release < ActiveRecord::Base
   accepts_nested_attributes_for :countries_releases, reject_if: :all_blank
   accepts_nested_attributes_for :steps_releases, reject_if: :all_blank
 
-  validates_presence_of :name, :released_at, :team
+  validates_presence_of :name, :released_at, :team, :steps_releases, :countries_releases
 
 
 end
