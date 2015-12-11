@@ -37,10 +37,10 @@
         <% statuses_steps_release = steps_release.status_for_country(countries_release.country) %>
           <td>
             <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <%= button_tag class: "btn dropdown-toggle #{statuses_steps_release.status_color}", type: 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'true' do %>
                 <span class="status-name"><%= statuses_steps_release.status.humanize %></span>
                 <span class="caret"></span>
-              </button>
+              <% end %>
               <ul class="dropdown-menu">
               <% StatusesStepsRelease.statuses.each do |status| %>
                 <li>

@@ -13,11 +13,16 @@ class StatusesStepsRelease < ActiveRecord::Base
          :done
        ]
 
+  def status_color
+    %w(btn-default btn-primary btn-warning btn-success btn-danger)[StatusesStepsRelease.statuses[self.status]]
+  end
 
   private
 
   def set_defaults
     self.status ||= 0
   end
+
+
 
 end

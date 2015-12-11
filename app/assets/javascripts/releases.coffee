@@ -15,7 +15,9 @@ ready = ->
       data: statuses_step_release: status: status
       headers: 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')).done (responce) ->
         if responce.status == 'ok'
-          self.parents('.dropdown').find('.status-name').text(responce.status_name)
+          dropdown = self.parents('.dropdown')
+          dropdown.find('.status-name').text(responce.status_name)
+          dropdown.find('.btn').attr('class', 'btn dropdown-toggle ' + responce.status_color)
         else
           alert('Status not changed')
         $('*').css 'cursor', ''

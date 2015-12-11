@@ -4,12 +4,14 @@ class StatusesStepsReleasesController < ApplicationController
 
   def update
     respond_to do |format|
+      p @statuses_step_release.status_color
       if @statuses_step_release.update(release_params)
         format.json {
           render json: {
             status: :ok,
             location: release_path(@statuses_step_release.steps_release.release),
-            status_name: @statuses_step_release.status.humanize
+            status_name: @statuses_step_release.status.humanize,
+            status_color: @statuses_step_release.status_color
             }
         }
       else
