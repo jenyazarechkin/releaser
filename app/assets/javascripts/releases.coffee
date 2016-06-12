@@ -13,11 +13,11 @@ ready = ->
       url: path
       method: 'patch'
       data: statuses_step_release: status: status
-      headers: 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')).done (responce) ->
-        if responce.status == 'ok'
+      headers: 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')).done (response) ->
+        if response.status == 'ok'
           dropdown = self.parents('.dropdown')
-          dropdown.find('.status-name').text(responce.status_name)
-          dropdown.find('.btn').attr('class', 'btn dropdown-toggle ' + responce.status_color)
+          dropdown.find('.status-name').text(response.status_name)
+          dropdown.find('.btn').attr('class', 'btn dropdown-toggle ' + response.status_color)
         else
           alert('Status not changed')
         $('*').css 'cursor', ''
